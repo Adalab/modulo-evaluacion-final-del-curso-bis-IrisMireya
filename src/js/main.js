@@ -24,7 +24,7 @@ function getData() {
   }
   function paintRecipes(recipe) {
     for (let i = 0; i < recipe.length; i++) {
-      listRecipes.innerHTML += `<div class="recipe"> ${recipe[i].title} <br><br>${recipe[i].cuisine}<br>${recipe[i].tags}<br> <img class="image" src=${recipe[i].photoUrl}><br>Calorias: ${recipe[i].calories}</div>`;
+      listRecipes.innerHTML += `<div class="recipe"><br>${recipe[i].title}<br>Tipo de cocina: ${recipe[i].cuisine}<br>Etiquetas: ${recipe[i].tags}<br> <img class="image" src=${recipe[i].photoUrl}><br class="calories">Calorias: ${recipe[i].calories}</div>`;
     }
   }
   function searchByType(foods) {
