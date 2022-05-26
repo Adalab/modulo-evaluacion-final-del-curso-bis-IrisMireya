@@ -5,17 +5,48 @@ header {
   font-family: "Indie Flower", cursive;
   font-size: 24px;
   text-align: center;
-  color: #045f1e;
-  background-color: #eff2ac; }
+  color: #023d13;
+  background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000); }
+
+input {
+  border-radius: 40px;
+  border: none;
+  width: 250px;
+  height: 20px; }
+
+textarea:focus,
+input:focus,
+input[type]:focus {
+  border-color: #24cb74;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #24cb74;
+  outline: 0 none; }
 
 main {
   background-color: #b6edbd;
   width: 100%;
   font-family: "Indie Flower", cursive;
-  font-size: 15px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   text-align: center;
-  padding-top: 35px; }
+  padding-top: 35px;
+  color: #023d13; }
+
+.recipes {
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap; }
+
+.recipe {
+  background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);
+  width: 80%;
+  box-sizing: border-box;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  margin-right: auto; }
+
+.image {
+  border-radius: 10px;
+  width: 150px; }
 
 /*# sourceMappingURL=main.css.map */

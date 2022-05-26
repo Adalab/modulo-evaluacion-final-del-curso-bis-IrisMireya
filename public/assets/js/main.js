@@ -5,21 +5,40 @@ let recipes = [];
 const listRecipes = document.querySelector(".js-recipes");
 const saveDatabtn = document.querySelector(".js-saveData");
 const loadDatabtn = document.querySelector(".js-loadData");
+const searchInput = document.querySelector(".js-text");
 
 function getData() {
   fetch("https://api.sampleapis.com/recipes/recipes")
     .then((response) => response.json())
     .then(function (data) {
-      saveRecipes(data);
-      paintRecipes(recipes);
+      //saveRecipes(data);
+      paintRecipes(data);
+      searchByType(data);
+      console.log(data);
     })
-     .catch(showError);
-     function showError() {
-    alert("Datos no disponibles");
+    .catch(error);
+  function showError() {
+    // alert("Datos no disponibles");
+    console.log(error);
     listRecipes.innerHTML = `<button class="reload" onclick=location.reload()>Recargar</button>`;
   }
+  function paintRecipes(recipe) {
+    for (let i = 0; i < recipe.length; i++) {
+      listRecipes.innerHTML += `<div class="recipe"> ${recipe[i].title} <br><br>${recipe[i].cuisine}<br>${recipe[i].tags}<br> <img class="image" src=${recipe[i].photoUrl}><br>Calorias: ${recipe[i].calories}</div>`;
+    }
+  }
+  function searchByType(foods) {
+    searchInput.addEventListener("input", (e) => {
+      listRecipes.innerHTML = "";
+      for (let iFoods = 0; iFoods < foods.length; iFoods++) {
+        if (searchInput.value === foods[iFoods].cuisine) {
+          listRecipes.innerHTML += `<div class="recipe"> ${foods[iFoods].title} <br><br>${foods[iFoods].cuisine}<br>${foods[iFoods].tags}<br> <img class="image" src=${foods[iFoods].photoUrl}><br>Calorias: ${foods[iFoods].calories}</div>`;
+        }
+      }
+    });
+  }
 
-   /* function saveRecipes() {
+  /* function saveRecipes() {
       localStorage.setItem("recipes", JSON.stringify(recipes));
     }
 
@@ -51,4 +70,5 @@ function getData() {
     }
   }*/
 }
+
 //# sourceMappingURL=main.js.map

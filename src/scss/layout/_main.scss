@@ -1,10 +1,29 @@
-main{
-    background-color: $colorBackground;
-    width: 100%;
-    font-family: $font;
-    font-size: 15px;
+main {
+  background-color: $colorBackground;
+  width: 100%;
+  font-family: $font;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 35px;
+  color: $colorText;
+}
+
+.recipes{
+    width: 400px;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    padding-top: 35px;
+    flex-wrap: wrap;
+}
+.recipe{
+    background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);
+    width: 80%;
+    box-sizing: border-box;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    margin-right: auto;
+}
+.image{
+    border-radius: 10px;
+    width: 150px;
 }
