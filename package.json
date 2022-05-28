@@ -1,5 +1,6 @@
 {
 	"name": "adalab-web-starter-kit",
+	"homepage": "./",
 	"version": "3.0.1",
 	"description": "Adalab web starter kit",
 	"dependencies": {
@@ -37,6 +38,5 @@
 		"url": "git+ssh://git@github.com:Adalab/adalab-web-starter-kit.git"
 	},
 	"author": "Adalab",
-	"license": "MIT",
-	"homepage": "https://github.com/adalab/adalab-web-starter-kit"
+	"license": "MIT"
 }

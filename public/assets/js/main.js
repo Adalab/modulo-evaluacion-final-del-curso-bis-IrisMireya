@@ -10,6 +10,7 @@ const saveBtn = document.querySelector(".js-savebutton");
 const recBtn = document.querySelector(".js-recoverbutton");
 const choosenRecipes = document.querySelector(".js-choosen");
 const recipeSelection = document.querySelector(".js-recipeFavourites");
+const favList = document.querySelector(".recipeFavourites");
 let favouritesRecipes = window.localStorage.getItem("recipes")
   ? JSON.parse(window.localStorage.getItem("recipes"))
   : [];
@@ -18,100 +19,75 @@ function getData() {
   fetch("https://api.sampleapis.com/recipes/recipes")
     .then((response) => response.json())
     .then(function (data) {
-      //saveRecipes(data);
       paintRecipes(listRecipes, data);
       recBtn.addEventListener("click", recRecipes);
-      //paintFavourites(favouritesRecipes);
       bindRecipes(data);
       searchByType(data);
+      handleBtns();
     })
     .catch(showError);
   function showError(error) {
     // alert("Datos no disponibles");
     listRecipes.innerHTML = `<button class="reload" onclick=location.reload()>Recargar</button>`;
   }
-  function paintFavourites(favouritesRecipes) {
-    paintRecipes(recipeSelection, favouritesRecipes);
-  }
+  
   function paintRecipes(element, recipe) {
     for (let i = 0; i < recipe.length; i++) {
       element.innerHTML += `<div id="${recipe[i].id}" class="recipe"><br>${recipe[i].title}<br>Tipo de cocina: ${recipe[i].cuisine}<br>Etiquetas: ${recipe[i].tags}<br> <img class="image"  src=${recipe[i].photoUrl}><br class="calories">Calorias: ${recipe[i].calories}</div>`;
     }
   }
-  function bindRecipes(data) {
-    for (const recipe of document.querySelectorAll(".recipe")) {
-      recipe.addEventListener("click", (event) => {
-        console.log("holi");
-        const recipeInformation = data.find((recipe) => {
-          if (recipe.id === parseInt(event.target.id)) {
-            console.log(recipe);
-            return recipe;
-          }
-        });
-        favouritesRecipes.push(recipeInformation);
-        localStorage.setItem("recipes", JSON.stringify(favouritesRecipes));
 
-        //js-recipeFavourites
-        const newFav = `<li class="fav js-recipeFavourites" id=${recipe[i].id}><div>${recipeInformation.recipe[i]}</div>`;
-        console.log(newFav);
-        favList.innerHTML += newFav;
-      });
-    }
-  }
   function recRecipes() {
-    console.log("hola");
     listRecipes.innerHTML = "";
     let saveRecipes = JSON.parse(localStorage.getItem("recipes"));
-    console.log(saveRecipes);
     paintRecipes(listRecipes, saveRecipes);
-    let totalRecipes = 0;
-    for (let cont = 0; cont < recipes.length; cont++) {
-      const isRecipe = recipes[cont].isRecipe;
-      if (isRecipe === true) { 
-        totalRecipes++;
-      }
-    }
   }
 }
 
-  function searchByType(foods) {
-    searchInput.addEventListener("input", (e) => {
-      listRecipes.innerHTML = "";
-      for (let iFoods = 0; iFoods < foods.length; iFoods++) {
-        if (searchInput.value === foods[iFoods].cuisine) {
-          listRecipes.innerHTML += `<div class="recipe"> ${foods[iFoods].title} <br><br>${foods[iFoods].cuisine}<br>${foods[iFoods].tags}<br> <img class="image" src=${foods[iFoods].photoUrl}><br>Calorias: ${foods[iFoods].calories}</div>`;
+function bindRecipes(data) {
+  for (const recipe of document.querySelectorAll(".recipe")) {
+    recipe.addEventListener("click", (event) => {
+      const recipeInformation = data.find((recipe) => {
+        if (recipe.id === parseInt(event.currentTarget.id)) {
+          return recipe;
         }
-      }
+      });
+
+      favouritesRecipes.push(recipeInformation);
+
+      const newFav = `<li class="fav js-recipeFavourites" id=${recipeInformation.id}><div class="recipe" >${recipeInformation.title}<br>Tipo de cocina: ${recipeInformation.cuisine}<br>Etiquetas: ${recipeInformation.tags}<br> <img class="image" src=${recipeInformation.photoUrl}><br class="calories">Calorias: ${recipeInformation.calories}</div>`;
+
+      favList.innerHTML += newFav;
     });
   }
+}
 
-  /* 
-     function handleBtns() {
-      saveBtn.addEventListener("click", saveRecipes);
-      
-  
-      function saveRecipes() {
-      localStorage.setItem("recipes", JSON.stringify(recipes));
+function searchByType(foods) {
+  searchInput.addEventListener("input", (e) => {
+    listRecipes.innerHTML = "";
+    const filteredRecipes = [];
+    for (let iFoods = 0; iFoods < foods.length; iFoods++) {
+      if (
+        foods[iFoods].cuisine
+          .toLowerCase()
+          .includes(searchInput.value.toLowerCase())
+      ) {
+        const recipeInformation = foods[iFoods];
+        filteredRecipes.push(recipeInformation);
+        listRecipes.innerHTML += `<div id="${recipeInformation.id}" class="recipe"><br>${recipeInformation.title}<br>Tipo de cocina: ${recipeInformation.cuisine}<br>Etiquetas: ${recipeInformation.tags}<br> <img class="image"  src=${recipeInformation.photoUrl}><br class="calories">Calorias: ${recipeInformation.calories}</div>`;
+      }
     }
+    bindRecipes(filteredRecipes);
+  });
+}
 
-    function saveRecipes(data) {
-    let recipes = [];
-    for (const dato of data) {
-      recipes = {
-        title: dato.title,
-        cuisine: dato.cuisine,
-        tags: dato.tags,
-        photoUrl: dato.photoUrl,
-        calories: dato.calories,
-        isRecipe: false,
-      };
-    }
-    console.log(recipes);
-  }*/
+function handleBtns() {
+  saveBtn.addEventListener("click", saveRecipes);
 
-    
-  //}
-//}
+  function saveRecipes() {
+    localStorage.setItem("recipes", JSON.stringify(favouritesRecipes));
+  }
+}
 
 //funcion eliminar lista favoritos por recarga
 
