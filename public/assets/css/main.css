@@ -58,6 +58,19 @@ main {
 /*.calories {
   color: rgb(255, 128, 0);
 }*/
+.recoverbutton, .savebutton {
+  width: 150px;
+  height: 35px;
+  background: #e5eb94;
+  background-image: linear-gradient(to bottom, #e5eb94, #20b076);
+  border: none;
+  border-radius: 11px;
+  text-shadow: 1px 1px 1px #eef158;
+  box-shadow: 6px 5px 24px #074326;
+  font-family: "Indie Flower", cursive;
+  color: #023d13;
+  font-size: 18px; }
+
 footer {
   width: 100%;
   background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);

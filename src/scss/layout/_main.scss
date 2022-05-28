@@ -9,8 +9,8 @@ main {
   padding-top: 35px;
   color: $colorText;
 }
-.recipes .choosen{
-    margin-left: 10%;
+.recipes .choosen {
+  margin-left: 10%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -34,3 +34,23 @@ main {
 /*.calories {
   color: rgb(255, 128, 0);
 }*/
+
+.recoverbutton, .savebutton{
+  width: 150px;
+  height: 35px;
+  background: #e5eb94;
+  background-image: -webkit-linear-gradient(top, #e5eb94, #20b076);
+  background-image: -moz-linear-gradient(top, #e5eb94, #20b076);
+  background-image: -ms-linear-gradient(top, #e5eb94, #20b076);
+  background-image: -o-linear-gradient(top, #e5eb94, #20b076);
+  background-image: linear-gradient(to bottom, #e5eb94, #20b076);
+  border: none;
+  border-radius: 11px;
+  text-shadow: 1px 1px 1px #eef158;
+  -webkit-box-shadow: 6px 5px 24px #074326;
+  -moz-box-shadow: 6px 5px 24px #074326;
+  box-shadow: 6px 5px 24px #074326;
+  font-family: $font;
+  color: $colorText;
+  font-size: 18px;
+}

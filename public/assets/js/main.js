@@ -6,6 +6,8 @@ const listRecipes = document.querySelector(".js-recipes");
 const saveDatabtn = document.querySelector(".js-saveData");
 const loadDatabtn = document.querySelector(".js-loadData");
 const searchInput = document.querySelector(".js-text");
+const saveBtn = document.querySelector(".js-savebutton");
+const recBtn = document.querySelector(".js-recoverbutton");
 const choosenRecipes = document.querySelector(".js-choosen");
 const recipeSelection = document.querySelector(".js-recipeFavourites");
 let favouritesRecipes = window.localStorage.getItem("recipes")
@@ -17,8 +19,9 @@ function getData() {
     .then((response) => response.json())
     .then(function (data) {
       //saveRecipes(data);
-      paintFavourites(favouritesRecipes);
       paintRecipes(listRecipes, data);
+      recBtn.addEventListener("click", recRecipes);
+      //paintFavourites(favouritesRecipes);
       bindRecipes(data);
       searchByType(data);
     })
@@ -31,23 +34,45 @@ function getData() {
     paintRecipes(recipeSelection, favouritesRecipes);
   }
   function paintRecipes(element, recipe) {
-    for (let i = 0; i < recipe.length; i++) { 
+    for (let i = 0; i < recipe.length; i++) {
       element.innerHTML += `<div id="${recipe[i].id}" class="recipe"><br>${recipe[i].title}<br>Tipo de cocina: ${recipe[i].cuisine}<br>Etiquetas: ${recipe[i].tags}<br> <img class="image"  src=${recipe[i].photoUrl}><br class="calories">Calorias: ${recipe[i].calories}</div>`;
     }
   }
   function bindRecipes(data) {
     for (const recipe of document.querySelectorAll(".recipe")) {
       recipe.addEventListener("click", (event) => {
+        console.log("holi");
         const recipeInformation = data.find((recipe) => {
           if (recipe.id === parseInt(event.target.id)) {
+            console.log(recipe);
             return recipe;
           }
         });
         favouritesRecipes.push(recipeInformation);
         localStorage.setItem("recipes", JSON.stringify(favouritesRecipes));
+
+        //js-recipeFavourites
+        const newFav = `<li class="fav js-recipeFavourites" id=${recipe[i].id}><div>${recipeInformation.recipe[i]}</div>`;
+        console.log(newFav);
+        favList.innerHTML += newFav;
       });
     }
   }
+  function recRecipes() {
+    console.log("hola");
+    listRecipes.innerHTML = "";
+    let saveRecipes = JSON.parse(localStorage.getItem("recipes"));
+    console.log(saveRecipes);
+    paintRecipes(listRecipes, saveRecipes);
+    let totalRecipes = 0;
+    for (let cont = 0; cont < recipes.length; cont++) {
+      const isRecipe = recipes[cont].isRecipe;
+      if (isRecipe === true) { 
+        totalRecipes++;
+      }
+    }
+  }
+}
 
   function searchByType(foods) {
     searchInput.addEventListener("input", (e) => {
@@ -60,7 +85,16 @@ function getData() {
     });
   }
 
-  function saveRecipes(data) {
+  /* 
+     function handleBtns() {
+      saveBtn.addEventListener("click", saveRecipes);
+      
+  
+      function saveRecipes() {
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+    }
+
+    function saveRecipes(data) {
     let recipes = [];
     for (const dato of data) {
       recipes = {
@@ -69,28 +103,25 @@ function getData() {
         tags: dato.tags,
         photoUrl: dato.photoUrl,
         calories: dato.calories,
+        isRecipe: false,
       };
     }
     console.log(recipes);
-  }
-
-  /* function saveRecipes() {
-      localStorage.setItem("recipes", JSON.stringify(recipes));
-    }
-
-    function loadRecipes() {
-      listRecipes.innerHTML = "";
-      let saveRecipes = JSON.parse(localStorage.getItem("recipes"));
-      paintUsers(saveUsers);
-      let totalFriends = 0;
-      for (let cont = 0; cont < users.length; cont++) {
-        const isFriend = users[cont].isFriend;
-        if (isFriend === true) { 
-          totalFriends++;
-        }
-      }
-    }
   }*/
-}
+
+    
+  //}
+//}
+
+//funcion eliminar lista favoritos por recarga
+
+/*btnReset.addEventListener("click", (del) => {
+  del.preventDefault();
+  if (favouritesDrinks.length > 0) {
+    favList.innerHTML = "";
+    favouritesDrinks =[];
+    localStorage.removeItem("drinks");
+  }
+});*/
 
 //# sourceMappingURL=main.js.map
