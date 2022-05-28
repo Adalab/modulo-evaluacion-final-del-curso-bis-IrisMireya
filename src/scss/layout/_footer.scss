@@ -1,4 +1,10 @@
-footer{
-    width: 100%;
-    background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);
+footer {
+  width: 100%;
+  background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: $font;
+  font-size: 18px;
+  text-align: center;
+  color: $colorText;
 }
