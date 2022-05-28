@@ -15,18 +15,33 @@
 
 <body onload="getData()">
     <header class="page__header">
-      <div class="header-title">
+      <div class="header__title">
         <h1>Recetas</h1>
         <h2>Ideas de recetas para todos los días</h2>
+        <input class="text js-text" type="text" title="ñam ñam" placeholder="Buscar por tipo de comida..." />
       </div>
 
     </header>
 
+
     <main class="main">
     <div class="main__container">
+      <button class="savebutton js-savebutton" title="Guardar">Guardar</button>
+      <button class="recoverbutton js-recoverbutton" title="Recuperar">Recuperar</button>
+        <div class="choosen js-choosen">
+          <h3>Menú Semanal</h3>
+          <ul class="recipeFavourites js-recipeFavourites"></ul>
+          <hr>
+        </div>
         <section class="recipes js-recipes"></section>
     </div>
       </main>
+
+   <footer class="page__footer">
+       <div class="footer__title">
+           <h3>Copyright © 2022 </h3>
+       </div>
+   </footer>
 
     <script src="./assets/js/main.js"></script>
 </body>
