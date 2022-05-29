@@ -9,14 +9,6 @@ main {
   padding-top: 35px;
   color: $colorText;
 }
-.recipes .choosen {
-  margin-left: 10%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 25px;
-  grid-row-gap: 45px;
-}
 .recipe {
   background-image: url(https://img.freepik.com/vector-gratis/fondo-floral-acuarela_125540-829.jpg?w=2000);
   width: 80%;
@@ -31,11 +23,12 @@ main {
   border-radius: 10px;
   width: 150px;
 }
-/*.calories {
-  color: rgb(255, 128, 0);
-}*/
+ul {
+  list-style: none;
+}
 
-.recoverbutton, .savebutton{
+.recoverbutton,
+.savebutton {
   width: 150px;
   height: 35px;
   background: #e5eb94;

@@ -8,6 +8,7 @@ const loadDatabtn = document.querySelector(".js-loadData");
 const searchInput = document.querySelector(".js-text");
 const saveBtn = document.querySelector(".js-savebutton");
 const recBtn = document.querySelector(".js-recoverbutton");
+const btnReset = document.querySelector(".js-delbutton");
 const choosenRecipes = document.querySelector(".js-choosen");
 const recipeSelection = document.querySelector(".js-recipeFavourites");
 const favList = document.querySelector(".recipeFavourites");
@@ -88,16 +89,4 @@ function handleBtns() {
     localStorage.setItem("recipes", JSON.stringify(favouritesRecipes));
   }
 }
-
-//funcion eliminar lista favoritos por recarga
-
-/*btnReset.addEventListener("click", (del) => {
-  del.preventDefault();
-  if (favouritesDrinks.length > 0) {
-    favList.innerHTML = "";
-    favouritesDrinks =[];
-    localStorage.removeItem("drinks");
-  }
-});*/
-
 //# sourceMappingURL=main.js.map
